@@ -42,7 +42,7 @@ using namespace std;
 BinNum::BinNum()
 {
 	//initialize the array
-    for (i = 0; i < 3; i++) 
+    for (int i = 0; i < 3; i++) 
     {
         the_num[0] = bit_0; // Initilizes character array to be 0000
     }
@@ -71,12 +71,12 @@ BinNum::BinNum( int num ) : BinNum()
     //cout << " hi from constructor BinNum( int num ) remove this when done \n";
     //do sone math to convert num to binary
     // Algorithm to convert decimal to binary
-    for(int i = 0; i < 3 && nums != 0; i++, nums /= 2)
+    for(int i = 0; i < 3 && num != 0; i++, num /= 2)
     {
-        if (nums % 2 != 0)
+        if (num % 2 != 0)
             this[i] = '1';
         else
-            this[i] - '0';
+            this[i] = '0';
     }
 }
 
@@ -101,7 +101,7 @@ BinNum::BinNum( const BinNum &initBinNum ): BinNum()
 {
     // cout << " calling copy constructor \n";
     for (int i = 0; i < SIZE; i++)
-        ((*this).the_num[i]) = initBinNum.the_num[i];
+        (this->the_num[i]) = initBinNum.the_num[i];
 
 }
 
@@ -130,7 +130,7 @@ BinNum&  BinNum::operator = ( const BinNum &initBinNum )
 
     //loop to assign array elements
     for (int i = 0; i < 3; i++)
-        intBinNum[0] = this[0];
+        this->the_num[i] = initBinNum.the_num[i];
     return *this;
 }
 
@@ -156,7 +156,10 @@ BinNum BinNum::operator+ ( BinNum &b1 )
     BinNum temp;
 
    //loop to add array elements- use addBits function
-    
+	for (int i = 0; i < 3; i++)
+	{
+		temp.the_num[i] = addBits(this->the_num[i], b1.the_num[i]); // Adds each bit together
+	}
   
 
     return temp;

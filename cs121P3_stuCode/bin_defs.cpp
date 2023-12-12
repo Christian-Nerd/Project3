@@ -59,16 +59,4 @@ char addBits(char bit1, char bit2)
 
 }
 
-
-BinNum operator + (BinNum& X, BinNum& Y)
-{
-	BinNum Z; // Result
-	for (int i = 0; i < 3; i++)
-	{
-		Z.the_num[i] = addBits(X.the_num[i], Y.the_num[i]); // Adds each bit together
-	}
-	carry_bit = '0';
-	return Z;
-}
-
 ///////////////////////////////////////////////////////////////////////////////
