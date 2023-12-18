@@ -32,5 +32,8 @@
     <ClInclude Include="cs121P3_stuCode\binNum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="misc_ops.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

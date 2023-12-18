@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="cs121P3_stuCode\binNum.h" />
     <ClInclude Include="cs121P3_stuCode\bin_defs.h" />
+    <ClInclude Include="misc_ops.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
