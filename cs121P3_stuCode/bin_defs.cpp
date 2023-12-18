@@ -39,22 +39,14 @@ char carry_bit = '0';		//initialize extern variable here
 
 char addBits(char bit1, char bit2)
 {
-	char sum;
-	int result = static_cast<int>(bit1) + static_cast<int>(bit2) + static_cast<int>(carry_bit); // This value evalutes if we should carry or not
-	if (result > 1)
-	{
-		carry_bit = '1';
-		sum = '1';
-	}
-	else if (result < 1)
-	{
-		sum = static_cast<char>(result);
-	}
-	else if (result > 0)
-	{
-		carry_bit = '1';
-		sum = '0';
-	}
+	int B1 = (int)bit1; // int version of bit 1 
+	int B2 = (int)bit2; // int version of bit 2
+	int B1xorB2 = B1 ^ B2; // bit1 xor bit2
+	int B1andB2 = B1 & B2; // bit1 and bit2
+	int CarryBit = (int)carry_bit; // ineger version of carry bit
+	// Full adder
+	char sum = static_cast<char>(B1xorB2 ^ CarryBit); // Gets sum
+	carry_bit = static_cast<char>(B1andB2 | (B1andB2 & CarryBit)); // Gets carry bit
     return sum;
 
 }

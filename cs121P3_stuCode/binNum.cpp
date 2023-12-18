@@ -9,7 +9,7 @@
 //
 // Date Written      : in the past
 //
-// Date Last Revised : 2022 November 
+// Date Last Revised : 12/18/23 
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -74,9 +74,14 @@ BinNum::BinNum( int num ) : BinNum()
     for(int i = 0; i < 3 && num != 0; i++, num /= 2)
     {
         if (num % 2 != 0)
-            this[i] = '1';
+            this->the_num[i] = '1';
         else
-            this[i] = '0';
+            this->the_num[i] = '0';
+    }
+    // The number from the loop above is reflected so set it striaght
+    for (int i = 3, int j = 0; i >= 0 && num != 0; i--, j++) 
+    {
+        swap(this->the_num[i], this->the_num[j]);
     }
 }
 
@@ -123,7 +128,7 @@ BinNum::BinNum( const BinNum &initBinNum ): BinNum()
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-BinNum&  BinNum::operator = ( const BinNum &initBinNum )
+BinNum&  BinNum::operator = (const BinNum &initBinNum )
 {
     if (this == &initBinNum)
         return *this;   //avoid self assignment
@@ -190,7 +195,11 @@ BinNum BinNum::operator* ( BinNum &b1 )
 
 	 //loop to multiple array elements
 	 //use shiftBinNumBy function to compute partial products
-  
+    for (int i = 0; i < SIZE; i++) 
+    {
+        product.the_num[i] = this->the_num[i] * b1.the_num[i]; // Multiplies each digit
+    }
+     
 
     return product;
 }
@@ -340,10 +349,58 @@ istream &operator >> ( istream &s, BinNum &b )
 void  BinNum::shiftBinNumBy( int shiftNum, BinNum& initBinNum )
 {
   // cout << " add your code here \n\n";
+    // char temp = ' '; // Temporary value to store number we need to override to shift
+    if (shiftNum >= 0)
+    {
+        for (int i = 0; i < SIZE; i++)
+        {
+            // Checking if trying to shift bit outside BitNum
+            if ((i + shiftNum) <= SIZE)
+            {
+                initBinNum.the_num[i + shiftNum] = this->the_num[i]; // Se
+                initBinNum.the_num[i] = bit_0;
+            }
+            // Sets current numbe to 0 if trying to reach outside BitNum
+            else
+                initBinNum.the_num[i] = bit_0;
+        }
+    }
+    else
+    {
+        for (int i = 3; i >= 0; i--)
+        {
+            // Checking if trying to shift bit outside BitNum
+            if ((i + shiftNum) >= 0)
+            {
+                initBinNum.the_num[i + shiftNum] = this->the_num[i]; // Se
+                initBinNum.the_num[i] = bit_0;
+            }
+            // Sets current numbe to 0 if trying to reach outside BitNum
+            else
+                initBinNum.the_num[i] = bit_0;
+        }
+
+    }
 }
 
 
-
+//*****************************************************************************
+// Function Name: GreetUser
+// Purpose: Greet the user and explain to them what to do
+// Parameters: None
+//   Input: None
+//   Input & Output: None
+//   Output: None
+// Return Value: None
+// Non-local Vairables Used:
+// Functions Called: 
+//
+//*****************************************************************************
+void GreetUsers() 
+{
+    cout << "Hello user. This program will add nad multiply 4 bit binary numbers" << endl << endl;
+    cout << "Do you wish to add or multiply the numbers?";
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 

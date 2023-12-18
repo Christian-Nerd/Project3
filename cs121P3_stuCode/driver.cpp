@@ -16,9 +16,10 @@
 
 
 #include<iostream>
+#include<iomanip>
+#include "binNum.h"
 using namespace::std;
 
-#include "binNum.h"
 
 
 int main()
