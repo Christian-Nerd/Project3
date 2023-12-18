@@ -36,7 +36,7 @@ char ShowMenu()
 {
     while (true)
     {
-        cout << endl << endl << "Add or Subtract";
+        cout << endl << endl << "Add or Multiply : ";
         string Answer;
         cin >> Answer;
         std::transform(Answer.begin(), Answer.end(), Answer.begin(), tolower);  // Convert
@@ -77,7 +77,7 @@ void GetBinaryNumbers(char Selection, BinNum& Term1, BinNum& Term2)
         cin >> Term2;
     }
     // Displays proper message for subtraction
-    else if (Selection == 's') 
+    else if (Selection == 'm') 
     {
         cout << "Please input the terms you are subtracting : " << endl; 
         cin >> Term1;

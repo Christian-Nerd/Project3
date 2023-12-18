@@ -198,16 +198,21 @@ BinNum BinNum::operator * ( BinNum &b1 )
 
 	 //loop to multiple array elements
 	 //use shiftBinNumBy function to compute partial products
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0, h = 3; i < SIZE; i++, h--)
     {
         // Computing partial products
         for (int j = 3; j >= 0; j--)
         {
-            partialProd[i].the_num[j] = static_cast<char>((int)b1.the_num[j] * (int)this->the_num[j]);
+            // Checks if the product of the bit multiplication is 1 else if sets the value to 0
+            if ((int)b1.the_num[j] * (int)this->the_num[h] == 49*49)
+                partialProd[i].the_num[j] = bit_1;
+            else
+                partialProd[i].the_num[j] = bit_0;
         }
-        shiftBinNumBy(i, partialProd[i]);
-        product = product + partialProd[i];
+        shiftBinNumBy(i, partialProd[i]); // Shifts the partial Product to its proper place value
     }
+    for (BinNum partialProduct : partialProd)
+        product = product + partialProduct;
     return product;
 }
 
@@ -301,9 +306,9 @@ ostream &operator << ( ostream &s, BinNum &b )
 {
     int i;
     for( i = 0; i < SIZE ; i++ )
-        {
-            s << b.the_num[i];
-        }
+    {
+        s << b.the_num[i];
+    }
 
     return s;
 }
@@ -353,42 +358,43 @@ istream &operator >> ( istream &s, BinNum &b )
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-void  BinNum::shiftBinNumBy( int shiftNum, BinNum& initBinNum )
+void BinNum::shiftBinNumBy( int shiftNum, BinNum& initBinNum )
 {
-    shiftNum *= -1; // So default behavior iis hifting to left
+    shiftNum *= -1; // So default behavior is shifting to left
   // cout << " add your code here \n\n";
     // char temp = ' '; // Temporary value to store number we need to override to shift
     if (shiftNum >= 0)
     {
-        for (int i = 0; i < SIZE; i++)
-        {
-            // Checking if trying to shift bit outside BitNum
-            if ((i + shiftNum) <= SIZE)
-            {
-                initBinNum.the_num[i + shiftNum] = this->the_num[i]; // Se
-                initBinNum.the_num[i] = bit_0;
-            }
-            // Sets current numbe to 0 if trying to reach outside BitNum
-            else
-                initBinNum.the_num[i] = bit_0;
-        }
-    }
-    else
-    {
         for (int i = 3; i >= 0; i--)
         {
             // Checking if trying to shift bit outside BitNum
-            if ((i + shiftNum) >= 0)
+            if ((i + shiftNum) >= 0 && (i + shiftNum) < SIZE)
             {
                 initBinNum.the_num[i + shiftNum] = this->the_num[i]; // Se
                 initBinNum.the_num[i] = bit_0;
             }
-            // Sets current numbe to 0 if trying to reach outside BitNum
+            // Sets current number to 0 if trying to reach outside BitNum
             else
                 initBinNum.the_num[i] = bit_0;
         }
-
     }
+   
+    else
+    {
+       for (int i = 0; i < SIZE; i++)
+       {
+           // Checking if trying to shift bit outside BitNum
+           if ((i + shiftNum) <= SIZE && (i + shiftNum) >= 0)
+           {
+               initBinNum.the_num[i + shiftNum] = this->the_num[i]; // Se
+               initBinNum.the_num[i] = bit_0;
+           }
+            // Sets current numbe to 0 if trying to reach outside BitNum
+            else
+               initBinNum.the_num[i] = bit_0;
+       }
+    }
+   
 }
 
 

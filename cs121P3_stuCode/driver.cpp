@@ -9,7 +9,7 @@
 //
 // Date Written      : in the past
 //
-// Date Last Revised :
+// Date Last Revised : 12/18/23
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -25,11 +25,13 @@ using namespace::std;
 
 int main()
 {
-	while (true)
+	bool Still = true; // Represents user choice
+	
+	while (Still)
 	{
 		GreetUsers();
-		BinNum term1;
-		BinNum term2;
+		BinNum term1; // First term
+		BinNum term2; // Second Term
 		char choice = ShowMenu();
 		if (choice == 'a')
 		{
@@ -42,7 +44,18 @@ int main()
 			GetBinaryNumbers(choice, term1, term2);
 			ShowMultiplication(term1, term2);
 		}
-
+		cout << endl << "Do you want to continue y/n";
+		char KeepGoing = ' '; // Represents if user wants to continue
+		cin >> choice; // Gets user choice
+		switch (tolower(KeepGoing)) 
+		{
+			case 'y':
+				continue;
+			case 'n':
+				Still = false; 
+				break;
+					
+		}
 	}
 }
 
