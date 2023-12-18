@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\Trey Davis\OneDrive - Erie Community College\Labs\CS121_P3\Project3\cs121P3_stuCode\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +131,7 @@
     <ClCompile Include="cs121P3_stuCode\binNum.cpp" />
     <ClCompile Include="cs121P3_stuCode\bin_defs.cpp" />
     <ClCompile Include="cs121P3_stuCode\driver.cpp" />
+    <ClCompile Include="misc_ops.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cs121P3_stuCode\binNum.h" />

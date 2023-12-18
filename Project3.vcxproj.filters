@@ -24,6 +24,9 @@
     <ClCompile Include="cs121P3_stuCode\driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="misc_ops.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cs121P3_stuCode\bin_defs.h">

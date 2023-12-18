@@ -25,11 +25,9 @@ using namespace::std;
 int main()
 {
 
-    /*
-      //You test that default consstructor works then remove this code
+
       BinNum bb;
       cout << " bb is "<< bb << endl;
-    */
 
     /*
       //YOU test that argument constructor works then remove this code

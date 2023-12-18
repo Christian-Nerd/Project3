@@ -42,9 +42,9 @@ using namespace std;
 BinNum::BinNum()
 {
 	//initialize the array
-    for (int i = 0; i < 3; i++) 
+    for (int i = 0; i < SIZE; i++) 
     {
-        the_num[0] = bit_0; // Initilizes character array to be 0000
+        the_num[i] = bit_0; // Initilizes character array to be 0000
     }
 }
 
@@ -79,7 +79,7 @@ BinNum::BinNum( int num ) : BinNum()
             this->the_num[i] = '0';
     }
     // The number from the loop above is reflected so set it striaght
-    for (int i = 3, int j = 0; i >= 0 && num != 0; i--, j++) 
+    for (int i = 3, j = 0; i >= 0 && num != 0; i--, j++) 
     {
         swap(this->the_num[i], this->the_num[j]);
     }
