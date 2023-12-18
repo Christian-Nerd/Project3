@@ -45,9 +45,9 @@ char ShowMenu()
         {
             return 'a';
         }
-        else if ((Answer == "sub") || (Answer == "subtract") || (Answer == "take away")) 
+        else if ((Answer == "multi") || (Answer == "multiply") ) 
         {
-            return 's';
+            return 'm';
         }
         else
         {
@@ -121,7 +121,7 @@ void ShowAddition(BinNum& Term1, BinNum& Term2)
 void ShowMultiplication(BinNum& Term1, BinNum& Term2) 
 {
     BinNum product = Term1 * Term2;
-    cout << "In binary form:    " << Term1 << " + " << Term2 << " = " << product;
-    cout << "In base 10 form:    " << Term1.bin2Base10() << " + ";
+    cout << "In binary form:    " << Term1 << " x " << Term2 << " = " << product;
+    cout << "In base 10 form:    " << Term1.bin2Base10() << " x ";
     cout << Term2.bin2Base10() << " = " << product.bin2Base10();
 }

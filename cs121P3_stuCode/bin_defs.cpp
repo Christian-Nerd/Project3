@@ -46,7 +46,7 @@ char addBits(char bit1, char bit2)
 	int CarryBit = (int)carry_bit; // ineger version of carry bit
 	// Full adder
 	char sum = static_cast<char>(B1xorB2 ^ CarryBit); // Gets sum
-	carry_bit = static_cast<char>(B1andB2 | (B1andB2 & CarryBit)); // Gets carry bit
+	carry_bit = static_cast<char>(B1andB2 | (B1xorB2 & CarryBit)); // Gets carry bit
     return sum;
 
 }

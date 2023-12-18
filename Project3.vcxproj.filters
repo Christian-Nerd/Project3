@@ -24,8 +24,8 @@
     <ClCompile Include="cs121P3_stuCode\driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="misc_ops.cpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="cs121P3_stuCode\misc_ops.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -35,7 +35,7 @@
     <ClInclude Include="cs121P3_stuCode\binNum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="misc_ops.h">
+    <ClInclude Include="cs121P3_stuCode\misc_ops.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

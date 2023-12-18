@@ -15,11 +15,13 @@
 
 
 #include "binNum.h"
+#include "bin_defs.h"
+#include "misc_ops.h"
 #include  <iostream>
 #include  <cmath>
 using namespace std;
 
-#include "bin_defs.h"
+
 
 
 
@@ -71,7 +73,7 @@ BinNum::BinNum( int num ) : BinNum()
     //cout << " hi from constructor BinNum( int num ) remove this when done \n";
     //do sone math to convert num to binary
     // Algorithm to convert decimal to binary
-    for(int i = 0; i < 3 && num != 0; i++, num /= 2)
+    for(int i = 0; i < SIZE && num != 0; i++, num /= 2)
     {
         if (num % 2 != 0)
             this->the_num[i] = '1';
@@ -134,7 +136,7 @@ BinNum&  BinNum::operator = (const BinNum &initBinNum )
         return *this;   //avoid self assignment
 
     //loop to assign array elements
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < SIZE; i++)
         this->the_num[i] = initBinNum.the_num[i];
     return *this;
 }
@@ -156,15 +158,16 @@ BinNum&  BinNum::operator = (const BinNum &initBinNum )
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-BinNum BinNum::operator+ ( BinNum &b1 )
+BinNum BinNum::operator + ( BinNum &b1 )
 {
     BinNum temp;
 
    //loop to add array elements- use addBits function
-	for (int i = 0; i < 3; i++)
+	for (int i = 3; i >= 0; i--)
 	{
 		temp.the_num[i] = addBits(this->the_num[i], b1.the_num[i]); // Adds each bit together
 	}
+    carry_bit = bit_0; // Resets carry bit
   
 
     return temp;
@@ -187,7 +190,7 @@ BinNum BinNum::operator+ ( BinNum &b1 )
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-BinNum BinNum::operator* ( BinNum &b1 )
+BinNum BinNum::operator * ( BinNum &b1 )
 {
     BinNum product;				//resulting product of this and b1
     BinNum partialProd[SIZE];	//an array storing all the partial products
@@ -195,12 +198,16 @@ BinNum BinNum::operator* ( BinNum &b1 )
 
 	 //loop to multiple array elements
 	 //use shiftBinNumBy function to compute partial products
-    for (int i = 0; i < SIZE; i++) 
+    for (int i = 0; i < SIZE; i++)
     {
-        product.the_num[i] = this->the_num[i] * b1.the_num[i]; // Multiplies each digit
+        // Computing partial products
+        for (int j = 3; j >= 0; j--)
+        {
+            partialProd[i].the_num[j] = static_cast<char>((int)b1.the_num[j] * (int)this->the_num[j]);
+        }
+        shiftBinNumBy(i, partialProd[i]);
+        product = product + partialProd[i];
     }
-     
-
     return product;
 }
 
@@ -348,6 +355,7 @@ istream &operator >> ( istream &s, BinNum &b )
 
 void  BinNum::shiftBinNumBy( int shiftNum, BinNum& initBinNum )
 {
+    shiftNum *= -1; // So default behavior iis hifting to left
   // cout << " add your code here \n\n";
     // char temp = ' '; // Temporary value to store number we need to override to shift
     if (shiftNum >= 0)
