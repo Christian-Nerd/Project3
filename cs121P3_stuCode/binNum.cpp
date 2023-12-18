@@ -360,17 +360,18 @@ istream &operator >> ( istream &s, BinNum &b )
 
 void BinNum::shiftBinNumBy( int shiftNum, BinNum& initBinNum )
 {
-    shiftNum *= -1; // So default behavior is shifting to left
+   shiftNum *= -1; // So default behavior is shifting to left
   // cout << " add your code here \n\n";
     // char temp = ' '; // Temporary value to store number we need to override to shift
-    if (shiftNum >= 0)
+    // This will start at the end of the string and shift it right
+    if (shiftNum > 0)
     {
         for (int i = 3; i >= 0; i--)
         {
             // Checking if trying to shift bit outside BitNum
             if ((i + shiftNum) >= 0 && (i + shiftNum) < SIZE)
             {
-                initBinNum.the_num[i + shiftNum] = this->the_num[i]; // Se
+                initBinNum.the_num[i + shiftNum] = initBinNum.the_num[i]; // Se
                 initBinNum.the_num[i] = bit_0;
             }
             // Sets current number to 0 if trying to reach outside BitNum
@@ -378,7 +379,10 @@ void BinNum::shiftBinNumBy( int shiftNum, BinNum& initBinNum )
                 initBinNum.the_num[i] = bit_0;
         }
     }
-   
+    // If shiftNum == 0 this will return out of the function
+    else if(shiftNum == 0)
+        return;
+    // This will start at the beginning of the string and shift left
     else
     {
        for (int i = 0; i < SIZE; i++)
@@ -386,7 +390,7 @@ void BinNum::shiftBinNumBy( int shiftNum, BinNum& initBinNum )
            // Checking if trying to shift bit outside BitNum
            if ((i + shiftNum) <= SIZE && (i + shiftNum) >= 0)
            {
-               initBinNum.the_num[i + shiftNum] = this->the_num[i]; // Se
+               initBinNum.the_num[i + shiftNum] = initBinNum.the_num[i]; // Se
                initBinNum.the_num[i] = bit_0;
            }
             // Sets current numbe to 0 if trying to reach outside BitNum
