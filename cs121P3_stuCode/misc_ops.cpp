@@ -9,8 +9,8 @@
 //   Input & Output: None
 //   Output: None
 // Return Value: None
-// Non-local Vairables Used:
-// Functions Called: 
+// Non-local Variables Used: None
+// Functions Called: None 
 //
 //*****************************************************************************
 void GreetUsers() 
@@ -29,7 +29,7 @@ void GreetUsers()
 //   Output: None
 // Return Value: Character representing answer
 // Non-local Vairables Used:
-// Functions Called: 
+// Functions Called: std::transform
 //
 //*****************************************************************************
 char ShowMenu() 
@@ -39,7 +39,7 @@ char ShowMenu()
         cout << endl << endl << "Add or Multiply : ";
         string Answer;
         cin >> Answer;
-        std::transform(Answer.begin(), Answer.end(), Answer.begin(), tolower);  // Convert
+        transform(Answer.begin(), Answer.end(), Answer.begin(), tolower);  // Convert
         // Answer to lowercase
         if((Answer == "add") || (Answer == "addition"))
         {
@@ -93,14 +93,14 @@ void GetBinaryNumbers(char Selection, BinNum& Term1, BinNum& Term2)
 //      Input & Output: None
 //      Output: None
 // Return Value: None
-// Functions Called:
+// Functions Called: BinNum::bin2Base10
 // 
 //*****************************************************************************
 
 void ShowAddition(BinNum& Term1, BinNum& Term2) 
 {
     BinNum sum = Term1 + Term2;
-    cout << "In binary form:    " << Term1 << " + " << Term2 << " = " << sum;
+    cout << "In binary form:    " << Term1 << " + " << Term2 << " = " << sum << endl;
     cout << "In base 10 form:    " << Term1.bin2Base10() << " + " << Term2.bin2Base10() << " = " << sum.bin2Base10();
 }
 
@@ -113,7 +113,7 @@ void ShowAddition(BinNum& Term1, BinNum& Term2)
 //      Input & Output: None
 //      Output: None
 // Return Value: None
-// Functions Called:
+// Functions Called: BinNum::bin2Base10()
 // 
 //*****************************************************************************
 

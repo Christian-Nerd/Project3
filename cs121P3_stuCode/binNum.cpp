@@ -5,7 +5,7 @@
 //
 // This file is the implementation of the binNum class
 //
-// Programmer        : B.J. Streller AND WHO ARE YOU ???????????????
+// Programmer        : B.J. Streller & Trey Davis
 //
 // Date Written      : in the past
 //
@@ -30,14 +30,16 @@ using namespace std;
 // Function name: BinNum()
 //
 // Purpose: consructor for BinNum class. Initializes bin num of SIZE bits to 0
-
 //
 // Input parameters: none
 //					 
-//
 // Output parameters: none
 //
 // Return Value: a BinNum object initialized to 0
+// 
+// Non-local Variables:
+// 
+// Functions Called: None
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -66,6 +68,10 @@ BinNum::BinNum()
 //
 // Return Value: a BinNum object initialized to the value of input num
 //
+// Non-local Variables Used:
+// 
+// Functions Called: std::swap
+// 
 ///////////////////////////////////////////////////////////////////////////////
 
 BinNum::BinNum( int num ) : BinNum()
@@ -132,10 +138,11 @@ BinNum::BinNum( const BinNum &initBinNum ): BinNum()
 
 BinNum&  BinNum::operator = (const BinNum &initBinNum )
 {
+    // Stops self-assignment
     if (this == &initBinNum)
         return *this;   //avoid self assignment
 
-    //loop to assign array elements
+    // loop to assign array elements
     for (int i = 0; i < SIZE; i++)
         this->the_num[i] = initBinNum.the_num[i];
     return *this;
@@ -160,6 +167,7 @@ BinNum&  BinNum::operator = (const BinNum &initBinNum )
 
 BinNum BinNum::operator + ( BinNum &b1 )
 {
+    // Intializes Images
     BinNum temp;
 
    //loop to add array elements- use addBits function
@@ -192,6 +200,7 @@ BinNum BinNum::operator + ( BinNum &b1 )
 
 BinNum BinNum::operator * ( BinNum &b1 )
 {
+   // Initializes Variables
     BinNum product;				//resulting product of this and b1
     BinNum partialProd[SIZE];	//an array storing all the partial products
 								//of the multiplicand by a single bit
@@ -299,11 +308,16 @@ void BinNum::foo()
 // Output parameters: none
 //
 // Return Value: an output stream object
+// 
+// Non-local Variables: None 
+// 
+// Functions Called: None
 //
 ///////////////////////////////////////////////////////////////////////////////
 
 ostream &operator << ( ostream &s, BinNum &b )
 {
+    // Prints out every bit from the BinNum variable
     int i;
     for( i = 0; i < SIZE ; i++ )
     {
@@ -325,6 +339,8 @@ ostream &operator << ( ostream &s, BinNum &b )
 // Input parameters: a BinNum object, and an input stream
 //			        					 
 // Output parameters: none
+//
+// Data Members Accessed: this->the_num
 //
 // Return Value: an input stream object
 //
@@ -355,7 +371,15 @@ istream &operator >> ( istream &s, BinNum &b )
 // Output parameters: this which will be the shifted BinNum object
 //
 // Return Value: none
-//
+// 
+// Data Members Accessed: this->the_num, initBinNum.the_num
+// 
+// Data Members Modified: this->the_num, initBinNum.the_num
+// 
+// Non-local Variables: None
+// 
+// Functions Called: 
+// 
 ///////////////////////////////////////////////////////////////////////////////
 
 void BinNum::shiftBinNumBy( int shiftNum, BinNum& initBinNum )
@@ -393,7 +417,7 @@ void BinNum::shiftBinNumBy( int shiftNum, BinNum& initBinNum )
                initBinNum.the_num[i + shiftNum] = initBinNum.the_num[i]; // Se
                initBinNum.the_num[i] = bit_0;
            }
-            // Sets current numbe to 0 if trying to reach outside BitNum
+            // Sets current number to 0 if trying to reach outside BitNum
             else
                initBinNum.the_num[i] = bit_0;
        }
