@@ -51,7 +51,7 @@ char ShowMenu()
         }
         else
         {
-            cerr << endl << "Invalid Input please input either Add or Subtract";
+            cerr << endl << "Invalid Input please input either Add or Multiply";
         }
     }
 }
@@ -79,7 +79,7 @@ void GetBinaryNumbers(char Selection, BinNum& Term1, BinNum& Term2)
     // Displays proper message for subtraction
     else if (Selection == 'm') 
     {
-        cout << "Please input the terms you are subtracting : " << endl; 
+        cout << "Please input the terms you are multiplying : " << endl; 
         cin >> Term1;
         cin >> Term2;
     }
@@ -121,7 +121,7 @@ void ShowAddition(BinNum& Term1, BinNum& Term2)
 void ShowMultiplication(BinNum& Term1, BinNum& Term2) 
 {
     BinNum product = Term1 * Term2;
-    cout << "In binary form:    " << Term1 << " x " << Term2 << " = " << product;
+    cout << "In binary form:    " << Term1 << " x " << Term2 << " = " << product << endl;;
     cout << "In base 10 form:    " << Term1.bin2Base10() << " x ";
     cout << Term2.bin2Base10() << " = " << product.bin2Base10();
 }

@@ -29,10 +29,12 @@ int main()
 	
 	while (Still)
 	{
+		// Greet users and get their choice
 		GreetUsers();
 		BinNum term1; // First term
 		BinNum term2; // Second Term
-		char choice = ShowMenu();
+		char choice = ShowMenu(); // What the user chooses from the menu
+		// Act on the choices a user makes
 		if (choice == 'a')
 		{
 			GetBinaryNumbers(choice, term1, term2);
@@ -44,17 +46,18 @@ int main()
 			GetBinaryNumbers(choice, term1, term2);
 			ShowMultiplication(term1, term2);
 		}
-		cout << endl << "Do you want to continue y/n";
+		cout << endl << "Do you want to continue y/n : ";
 		char KeepGoing = ' '; // Represents if user wants to continue
-		cin >> choice; // Gets user choice
-		switch (tolower(KeepGoing)) 
+		cin >> KeepGoing; // Gets user choice
+		if (tolower(KeepGoing) == 'y')
 		{
-			case 'y':
-				continue;
-			case 'n':
-				Still = false; 
-				break;
-					
+			cout << endl; // e pAdds new line to buffer to make next run of the program look nice
+			continue;
+		}
+
+		else if (tolower(KeepGoing) == 'n')
+		{
+			Still = false;
 		}
 	}
 }
